@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Uni Dahboard</title>
+    <style>
+        @font-face {
+            font-family: ATypewriterForMe;
+            src: url(./Media/ATypewriterForMe.ttf);
+        }
+        @font-face {
+            font-family: Gyahegi;
+            src: url(./Media/Gyahegi.otf);
+        }
+        @font-face {
+            font-family: jmh_typewriter;
+            src: url(./Media/JMH\ Typewriter.ttf);
+        }
+        .mainFlex {
+            display: flex;
+            flex-direction: row;
+            margin: 5px;
+            background-color: #d3b6ca;
+            width:fit-content;
+            border-radius: 5px;
+            width: 200px;
+        }
+        .textFlex {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+        }
+        .text {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 5px;
+            font-size: medium;
+        }
+        #weekdayText {
+            font-size: 24px;
+            margin-top: 10px;
+            font-family: Gyahegi;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="mainFlex">
+        <div class="textFlex">
+            <p id="weekdayText" class="text"></p>
+            <p id="dateText" class="text"></p>
+            <p id="weeknumberText" class="text">Week: </p>
+
+        </div>
+    </div>
+
+    <script>
+
+        // Create today's date
+        let todayDate = new Date();
+
+
+        let dd = String(todayDate.getDate()).padStart(2, '0');
+        let mm = String(todayDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = todayDate.getFullYear();
+        todayDate = dd + "." + mm + "." + yyyy;
+
+        let weekday = new Date().toLocaleString('en-us', {  weekday: 'long' });
+
+        Date.prototype.getWeek = function() {
+            let onejan = new Date(this.getFullYear(), 0, 1);
+            return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+        }
+
+        let weekNumber = (new Date()).getWeek();
+
+
+
+        weekdaytextEl = document.getElementById("weekdayText");
+        weekdaytextEl.innerHTML = weekday;
+        datetextEl = document.getElementById("dateText");
+        datetextEl.innerHTML += todayDate;
+        weeknumberEl = document.getElementById("weeknumberText");
+        weeknumberEl.innerHTML += weekNumber;
+
+
+    </script>
+    
+</body>
+</html>
