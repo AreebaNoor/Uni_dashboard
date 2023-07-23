@@ -56,7 +56,7 @@
         let dd = String(todayDate.getDate()).padStart(2, '0');
         let mm = String(todayDate.getMonth() + 1).padStart(2, '0'); //January is 0!
         let yyyy = todayDate.getFullYear();
-        todayDate = dd + "." + mm + "." + yyyy;
+        todayDate = dd + " . " + mm + " . " + yyyy;
 
         let weekday = new Date().toLocaleString('en-us', {  weekday: 'long' });
 
